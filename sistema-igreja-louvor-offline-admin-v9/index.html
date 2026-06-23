@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0b2545" />
+  <title>Grupo Louvor V.M.A</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="assets/icons/icon-192.png" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" id="goHomeBrand" type="button" aria-label="Ir para a página inicial">
+        <img class="brand-logo" src="assets/img/logotipo-igreja.png" alt="Logotipo da igreja" />
+        <span>
+          <strong id="appName">Grupo Louvor V.M.A</strong>
+          <small id="appSubtitle">Assembleia de Deus • São Miguel Paulista • Vila Maria Augusta</small>
+        </span>
+      </button>
+      <div class="top-actions">
+        <button id="updateAppBtn" class="btn soft" type="button" title="Buscar a versão mais recente">Atualizar</button>
+        <button id="installBtn" class="btn gold" type="button" hidden>Instalar app</button>
+        <button id="adminOpenBtn" class="btn outline" type="button">Admin</button>
+      </div>
+    </header>
+
+    <nav class="main-tabs" aria-label="Navegação principal">
+      <button class="tab-btn active" data-page="home" type="button">Home</button>
+      <button class="tab-btn" data-page="harpa" type="button">Harpa Cristã</button>
+      <button class="tab-btn" data-page="congregacionais" type="button">Congregacionais</button>
+      <button class="tab-btn" data-page="exercicios" type="button">Exercícios vocais</button>
+      <button class="tab-btn" data-page="comunicados" type="button">Comunicados</button>
+      <button class="tab-btn" data-page="membros" type="button">Membros</button>
+      <button class="tab-btn" data-page="aniversarios" type="button">Aniversariantes</button>
+    </nav>
+
+    <aside class="mobile-side-nav" id="mobileSideNav" aria-label="Atalhos laterais mobile">
+      <button id="mobileHomeBtn" class="mobile-nav-btn" type="button" aria-label="Ir para a tela inicial"><span>🏠</span><small>Home</small></button>
+      <button id="mobileSearchBtn" class="mobile-nav-btn" type="button" aria-label="Abrir pesquisa rápida"><span>🔎</span><small>Buscar</small></button>
+      <button id="mobileListBtn" class="mobile-nav-btn" type="button" aria-label="Abrir lista de hinos"><span>🎼</span><small>Lista</small></button>
+    </aside>
+
+    <main>
+      <section id="homeView" class="view active-view" aria-label="Página inicial">
+        <section class="home-hero panel">
+          <div class="hero-copy">
+            <span class="eyebrow" id="denominationLine">Assembleia de Deus • São Miguel Paulista</span>
+            <h1 id="homeTitle">Grupo Louvor V.M.A</h1>
+            <p id="churchLine">Vila Maria Augusta</p>
+            <p class="hero-address" id="churchAddress">R. Tiradentes, 272 - V. Maria Augusta</p>
+          </div>
+          <div class="hero-logos">
+            <img src="assets/img/logotipo-igreja.png" alt="Logotipo da igreja Vila Maria Augusta" />
+            <img src="assets/img/logo-grupo-louvor.webp" alt="Logotipo do grupo de louvor" />
+          </div>
+        </section>
+
+        <section class="home-actions" aria-label="Ações rápidas">
+          <button id="openSearchBtn" class="action-card search-card" type="button">
+            <span class="action-icon">🔎</span>
+            <strong>Pesquisa rápida</strong>
+            <small>Procure hino, louvor, comunicado, escala, membro ou data.</small>
+          </button>
+
+          <button class="action-card notice-card" data-page="comunicados" type="button">
+            <span class="action-icon">📢</span>
+            <strong>Comunicados importantes</strong>
+            <small id="homeComunicadosResumo">Ver avisos do grupo</small>
+          </button>
+
+          <button class="action-card schedule-card" data-page="escala" type="button">
+            <span class="action-icon">🎤</span>
+            <strong>Escala da semana</strong>
+            <small id="homeEscalaResumo">Quem irá cantar e tocar</small>
+          </button>
+
+          <button id="openRehearsalBtn" class="action-card rehearsal-card" type="button">
+            <span class="action-icon">📅</span>
+            <strong>Próximo ensaio</strong>
+            <small id="homeEnsaioResumo">Data e horário do ensaio</small>
+          </button>
+
+          <button id="openRepertoireBtn" class="action-card songs-card" type="button">
+            <span class="action-icon">🎶</span>
+            <strong>Louvores do ensaio</strong>
+            <small>Hinos, louvores e tons escolhidos.</small>
+          </button>
+        </section>
+
+        <section id="homeDetailPanel" class="panel home-detail" hidden>
+          <div class="section-head compact">
+            <div>
+              <span class="eyebrow" id="homeDetailKicker">Detalhes</span>
+              <h2 id="homeDetailTitle">Informação</h2>
+            </div>
+            <button id="closeHomeDetailBtn" class="btn soft" type="button">Fechar</button>
+          </div>
+          <div id="homeDetailContent" class="home-detail-content"></div>
+        </section>
+      </section>
+
+      <section id="sectionView" class="view" aria-label="Página de conteúdo">
+        <div class="section-toolbar panel">
+          <button id="backHomeBtn" class="btn soft" type="button">← Home</button>
+          <div class="section-title-block">
+            <span class="eyebrow" id="sectionKicker">Seção</span>
+            <h2 id="sectionTitle">Conteúdos</h2>
+          </div>
+          <button id="toggleListBtn" class="btn outline only-mobile" type="button">Lista</button>
+          <label class="section-search" for="sectionSearchInput">
+            <span class="search-icon">🔎</span>
+            <input id="sectionSearchInput" type="search" placeholder="Pesquisar nesta página..." autocomplete="off" />
+          </label>
+        </div>
+
+        <div class="section-layout">
+          <aside class="list-panel panel" id="listPanel">
+            <details class="harpa-menu" id="harpaMenu" open>
+              <summary>Escolher por número ou nome</summary>
+              <div class="list-top">
+                <strong id="listCount">0 itens</strong>
+                <button id="downloadSectionBtn" class="btn tiny soft" type="button">Baixar textos</button>
+              </div>
+              <div id="itemList" class="item-list"></div>
+            </details>
+            <p id="sectionEmpty" class="empty" hidden>Nenhum item encontrado.</p>
+          </aside>
+
+          <article class="reader-panel panel" id="readerPanel">
+            <div class="reader-placeholder">
+              <span class="placeholder-icon">♫</span>
+              <h2>Escolha um item</h2>
+              <p>Selecione um hino, louvor, exercício, comunicado, membro ou aniversariante.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="adminPanel" class="view admin-panel" aria-label="Área administrativa">
+        <div class="section-toolbar panel admin-toolbar">
+          <button id="adminBackBtn" class="btn soft" type="button">← Home</button>
+          <div>
+            <span class="eyebrow">Somente administradores</span>
+            <h2>Painel de administração</h2>
+          </div>
+          <button id="logoutBtn" class="btn danger" type="button">Sair do admin</button>
+        </div>
+
+        <div class="admin-grid">
+          <form id="homeForm" class="panel form-card">
+            <span class="eyebrow">Configuração do app</span>
+            <h3>Editar tela inicial</h3>
+            <div class="field-grid">
+              <label>Nome da aplicação
+                <input id="formAppNome" placeholder="Grupo Louvor V.M.A" />
+              </label>
+              <label>Nome da igreja
+                <input id="formIgrejaNome" placeholder="Vila Maria Augusta" />
+              </label>
+              <label>Ministério
+                <input id="formMinisterio" placeholder="São Miguel Paulista" />
+              </label>
+              <label>Denominação
+                <input id="formDenominacao" placeholder="Assembleia de Deus" />
+              </label>
+            </div>
+            <label>Endereço
+              <input id="formEndereco" placeholder="R. Tiradentes, 272 - V. Maria Augusta" />
+            </label>
+            <label>Escala da semana / quem irá cantar
+              <textarea id="homeFormEscala" rows="4"></textarea>
+            </label>
+            <label>Louvores que iremos cantar e ensaiar
+              <textarea id="homeFormLouvores" rows="5" placeholder="Ex.: harpa:001 | Chuvas de Graça | G&#10;congregacional:1 | Nome do louvor | D"></textarea>
+            </label>
+            <div class="field-grid">
+              <label>Nome do ensaio
+                <input id="homeFormEnsaioTitulo" placeholder="Ensaio do Grupo de Louvor" />
+              </label>
+              <label>Data do próximo ensaio
+                <input id="homeFormEnsaioData" type="date" />
+              </label>
+              <label>Hora de início
+                <input id="homeFormEnsaioHora" type="time" />
+              </label>
+              <label>Hora de término
+                <input id="homeFormEnsaioFim" type="time" />
+              </label>
+            </div>
+            <label>Local do ensaio
+              <input id="homeFormEnsaioLocal" placeholder="Templo - Vila Maria Augusta" />
+            </label>
+            <label>Mensagem principal que o grupo passará à igreja
+              <textarea id="homeFormMensagem" rows="4"></textarea>
+            </label>
+            <label>Aniversariantes da semana
+              <textarea id="homeFormAniversariantes" rows="3"></textarea>
+            </label>
+            <label>Comunicados importantes
+              <textarea id="homeFormComunicados" rows="4"></textarea>
+            </label>
+            <button class="btn gold" type="submit">Salvar tela inicial</button>
+          </form>
+
+          <form id="contentForm" class="panel form-card">
+            <span class="eyebrow">Conteúdos</span>
+            <h3 id="formTitle">Novo cadastro</h3>
+            <input type="hidden" id="editId" />
+            <div class="field-grid">
+              <label>Tipo
+                <select id="formTipo" required>
+                  <option value="harpa">Harpa Cristã</option>
+                  <option value="congregacionais">Louvor Congregacional</option>
+                  <option value="exercicios">Exercício vocal</option>
+                  <option value="comunicados">Comunicado</option>
+                  <option value="membros">Membro</option>
+                  <option value="aniversarios">Aniversário</option>
+                  <option value="escala">Escala</option>
+                  <option value="cifras">Cifra avulsa</option>
+                </select>
+              </label>
+              <label>Número/ordem
+                <input id="formNumero" type="number" min="0" placeholder="Ex.: 15" />
+              </label>
+              <label>Data
+                <input id="formData" type="date" />
+              </label>
+              <label>Tom
+                <input id="formTom" placeholder="Ex.: G, C, Dm" />
+              </label>
+            </div>
+            <label>Título
+              <input id="formTitulo" required placeholder="Título do hino, louvor, escala ou comunicado" />
+            </label>
+            <label>Categoria
+              <input id="formCategoria" placeholder="Ex.: Harpa Cristã, Congregacional, Aviso" />
+            </label>
+            <label>Letra, conteúdo, escala, comunicado ou dados do membro
+              <textarea id="formTexto" rows="8" placeholder="Digite ou cole o conteúdo completo"></textarea>
+            </label>
+            <label>Cifra / acordes
+              <textarea id="formCifra" rows="4" placeholder="Cole a cifra aqui"></textarea>
+            </label>
+            <label>Significado / mensagem do louvor
+              <textarea id="formSignificado" rows="5" placeholder="Explique o que este louvor representa e qual mensagem transmite"></textarea>
+            </label>
+            <div class="field-grid">
+              <label>Link/caminho da melodia/áudio
+                <input id="formAudioUrl" placeholder="assets/audio/nome.mp3 ou link autorizado" />
+              </label>
+              <label>Áudio local para este aparelho
+                <input id="formAudioFile" type="file" accept="audio/*" />
+              </label>
+            </div>
+            <label>Observações
+              <textarea id="formObs" rows="3"></textarea>
+            </label>
+            <div class="checks">
+              <label><input id="formAtivo" type="checkbox" checked /> Ativo para usuários</label>
+              <label><input id="formDestaque" type="checkbox" /> Destacar na lista</label>
+            </div>
+            <div class="form-actions">
+              <button class="btn gold" type="submit">Salvar cadastro</button>
+              <button id="cancelEditBtn" class="btn soft" type="button">Cancelar edição</button>
+            </div>
+          </form>
+
+          <section class="panel form-card">
+            <span class="eyebrow">Importar e exportar</span>
+            <h3>Backup e atualização do Netlify</h3>
+            <div class="field-grid">
+              <label>Destino da importação
+                <select id="importTipo">
+                  <option value="auto">Detectar pelo arquivo</option>
+                  <option value="harpa">Harpa Cristã</option>
+                  <option value="congregacionais">Louvores congregacionais</option>
+                  <option value="exercicios">Exercícios vocais</option>
+                  <option value="comunicados">Comunicados</option>
+                  <option value="membros">Membros</option>
+                  <option value="aniversarios">Aniversários</option>
+                  <option value="escala">Escala</option>
+                  <option value="cifras">Cifras</option>
+                </select>
+              </label>
+              <label>Arquivo JSON ou CSV
+                <input id="importFile" type="file" accept=".json,.csv,.txt" />
+              </label>
+            </div>
+            <label>Texto em lote
+              <textarea id="importText" rows="5" placeholder="### 001 - Título&#10;Letra...&#10;Significado: ..."></textarea>
+            </label>
+            <div class="form-actions wrap">
+              <button id="importBtn" class="btn gold" type="button">Importar dados</button>
+              <button id="exportJsonBtn" class="btn soft" type="button">Exportar JSON</button>
+              <button id="exportCsvBtn" class="btn soft" type="button">Exportar CSV</button>
+              <button id="exportSeedBtn" class="btn success" type="button">Gerar seed-data.js</button>
+              <button id="resetBtn" class="btn danger" type="button">Restaurar base original</button>
+            </div>
+          </section>
+
+
+
+          <section class="panel form-card sync-card">
+            <span class="eyebrow">Sincronização online</span>
+            <h3>Salvar alterações para todos os usuários</h3>
+            <p class="admin-note">Sem banco online, o navegador salva apenas no aparelho do administrador. Configure o Firebase uma vez para que escala, comunicados, hinos e demais alterações cheguem aos irmãos quando abrirem o app com internet.</p>
+            <label>firebaseConfig do Firebase
+              <textarea id="syncConfigText" rows="8" placeholder='{
+  "apiKey": "...",
+  "authDomain": "...firebaseapp.com",
+  "projectId": "...",
+  "appId": "..."
+}'></textarea>
+            </label>
+            <label>ID da base online
+              <input id="syncDocId" placeholder="dados-principais" />
+            </label>
+            <div class="sync-status" id="syncStatus">Sincronização online desativada.</div>
+            <div class="form-actions wrap">
+              <button id="saveSyncConfigBtn" class="btn gold" type="button">Salvar configuração</button>
+              <button id="pushCloudBtn" class="btn success" type="button">Enviar alterações para todos</button>
+              <button id="pullCloudBtn" class="btn soft" type="button">Baixar dados online</button>
+              <button id="clearSyncConfigBtn" class="btn danger" type="button">Desativar neste aparelho</button>
+            </div>
+          </section>
+
+          <section class="panel form-card">
+            <span class="eyebrow">Senha</span>
+            <h3>Trocar senha administrativa neste aparelho</h3>
+            <div class="field-grid">
+              <label>Nova senha
+                <input id="newPassword" type="password" autocomplete="new-password" />
+              </label>
+              <label>Repita a nova senha
+                <input id="newPassword2" type="password" autocomplete="new-password" />
+              </label>
+            </div>
+            <button id="changePasswordBtn" class="btn gold" type="button">Alterar senha local</button>
+          </section>
+
+          <section class="panel form-card admin-list-card">
+            <div class="section-head compact">
+              <div>
+                <span class="eyebrow">Registros</span>
+                <h3>Editar conteúdos cadastrados</h3>
+              </div>
+              <select id="adminListTipo">
+                <option value="harpa">Harpa Cristã</option>
+                <option value="congregacionais">Congregacionais</option>
+                <option value="exercicios">Exercícios vocais</option>
+                <option value="comunicados">Comunicados</option>
+                <option value="membros">Membros</option>
+                <option value="aniversarios">Aniversários</option>
+                <option value="escala">Escala</option>
+                <option value="cifras">Cifras</option>
+              </select>
+            </div>
+            <div id="adminList" class="admin-list"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="loginDialog" class="login-dialog">
+    <form id="loginForm" method="dialog" class="login-card">
+      <h2>Área administrativa</h2>
+      <p>Somente administradores podem alterar informações.</p>
+      <label>Usuário
+        <input id="loginUser" value="admin" autocomplete="username" />
+      </label>
+      <label>Senha
+        <input id="loginPass" type="password" autocomplete="current-password" />
+      </label>
+      <div class="login-actions">
+        <button class="btn gold" type="submit">Entrar</button>
+        <button id="closeLoginBtn" class="btn soft" type="button">Cancelar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="searchDialog" class="search-dialog">
+    <div class="search-card-modal">
+      <div class="section-head compact">
+        <div>
+          <span class="eyebrow">Pesquisa rápida</span>
+          <h2>Buscar em todo o app</h2>
+        </div>
+        <button id="closeSearchBtn" class="btn soft" type="button">Fechar</button>
+      </div>
+      <label class="global-search" for="globalSearchInput">
+        <span class="search-icon">🔎</span>
+        <input id="globalSearchInput" type="search" placeholder="Digite nº 15, 015, título, trecho, tom, membro, comunicado..." autocomplete="off" />
+      </label>
+      <div id="globalResults" class="result-grid"></div>
+      <p id="globalEmpty" class="empty" hidden>Nenhum resultado encontrado.</p>
+    </div>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="sync-config.js"></script>
+  <script src="seed-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
